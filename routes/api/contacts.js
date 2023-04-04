@@ -1,6 +1,7 @@
 const express = require("express");
-const {valiadation, ctrlWrapper} = require('../../middlewares');
-const {contactsSchema} = require('../../schemas')
+const {valiadation, ctrlWrapper, updateValiadation} = require('../../middlewares');
+const {contactsSchema} = require('../../schemas');
+const {updateContactsSchema} = require('../../schemas')
 
 
 const { contacts: ctrl } = require("../../controllers");
@@ -16,6 +17,6 @@ router.post("/", validateMiddleware, ctrlWrapper(ctrl.add));
 
 router.delete("/:contactId", ctrlWrapper(ctrl.removeById));
 
-router.put("/:contactId", valiadation(contactsSchema), ctrlWrapper(ctrl.updateById));
+router.put("/:contactId", updateValiadation(updateContactsSchema), ctrlWrapper(ctrl.updateById));
 
 module.exports = router;

@@ -40,11 +40,11 @@ const addContact = async (body) => {
     email,
     phone,
   };
-
   const updatedContacts = [...contacts, newContact];
   await fs.writeFile(contactsPath, JSON.stringify(updatedContacts));
   return newContact;
 };
+
 
 const updateContact = async (id, body) => {
   const contacts = await listContacts();
