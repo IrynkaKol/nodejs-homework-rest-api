@@ -11,7 +11,7 @@ const updateContactsSchema = Joi.object({
   phone: Joi.string().min(5),
   favorite: Joi.boolean(),
 
-  id: Joi.string(),
+  // id: Joi.string(),
 });
 
 module.exports = updateContactsSchema;
