@@ -9,6 +9,8 @@ const contactsSchema = Joi.object({
 
   phone: Joi.string().min(5).required(),
 
+  favorite: Joi.boolean(),
+
   id: Joi.string(),
 });
 
