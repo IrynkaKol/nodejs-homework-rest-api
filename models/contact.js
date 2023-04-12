@@ -1,6 +1,5 @@
 // створемо мангус модель
 
-const { version } = require("joi");
 const { Schema, model } = require("mongoose");
 
 const contactSchema = new Schema({

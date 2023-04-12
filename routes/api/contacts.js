@@ -3,10 +3,9 @@ const {valiadation, ctrlWrapper, updateValiadation, isValidId, updateFavoriteVal
 const {contactsSchema} = require('../../schemas');
 const {updateContactsSchema} = require('../../schemas');
 const {updateFavoriteSchema} = require('../../schemas')
-
-
-
 const { contacts: ctrl } = require("../../controllers");
+
+
 const validateMiddleware = valiadation(contactsSchema)
 
 const router = express.Router();
