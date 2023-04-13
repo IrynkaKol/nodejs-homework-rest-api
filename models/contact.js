@@ -17,6 +17,10 @@ const contactSchema = new Schema({
     type: Boolean,
     default: false, // якщо не передали це поле
   },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+  },
 }); // вимоги до обєкту
 
 const Contact = model("contact", contactSchema); // створили модель це клас, який буде працювати з колекцією contact

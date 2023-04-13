@@ -20,10 +20,7 @@ const userSchema = new Schema({
     type: String,
     default: null,
   },
-  owner: {
-    type: Schema.Types.ObjectId,
-    ref: "user",
-  },
+  
 });
 
 userSchema.post("save", handleMongooseError);
