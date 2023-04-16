@@ -1,6 +1,5 @@
 // створемо мангус модель
 
-const { version } = require("joi");
 const { Schema, model } = require("mongoose");
 
 const contactSchema = new Schema({
@@ -17,6 +16,10 @@ const contactSchema = new Schema({
   favorite: {
     type: Boolean,
     default: false, // якщо не передали це поле
+  },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
   },
 }); // вимоги до обєкту
 
