@@ -1,6 +1,7 @@
 const Jimp = require("jimp");
 
 const sizeAvatar = async (imagePath) =>
+
   new Promise((resolve) => {
     try {
       Jimp.read(imagePath, (err, image) => {
