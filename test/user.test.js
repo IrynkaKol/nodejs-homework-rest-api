@@ -1,6 +1,6 @@
 const express = require("express");
 const request = require("supertest");
-const { users: ctrl } = require("../../controllers");
+const { users: ctrl } = require("../controllers");
 
 const app = express();
 app.post("/users/register", ctrl.register);
