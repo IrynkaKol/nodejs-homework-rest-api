@@ -12,5 +12,6 @@ describe("test register controller", () => {
   test("register return user", async () => {
     const response = await request(app).post("/user/register");
     console.log(response.status);
+    // expect(response.status).toBe(200)
   });
 });
