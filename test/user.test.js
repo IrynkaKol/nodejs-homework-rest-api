@@ -3,14 +3,12 @@ const request = require("supertest");
 const { users: ctrl } = require("../controllers");
 
 const app = express();
-app.post("/users/register", ctrl.register);
+app.post("/users/login", ctrl.login);
 
-beforeAll(() => app.listen(3000));
-
-
-describe("test register controller", () => {
-  test("register return user", async () => {
-    const response = await request(app).post("/user/register");
+describe("test login controller", () => {
+  beforeAll(() => app.listen(3000));
+  test("login return user", async () => {
+    const response = await request(app).post("/users/login");
     console.log(response.status);
     // expect(response.status).toBe(200)
   });
