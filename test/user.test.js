@@ -1,26 +1,36 @@
-
-
-
-const express = require("express");
 const request = require("supertest");
-const bcrypt = require("bcrypt");
-const { users: ctrl } = require("../controllers");
+const app = require("../app");
+const mongoose = require("mongoose");
+const { DB_HOST } = process.env;
 
-const app = express();
-app.post("/users/login", ctrl.login);
+describe("Tests for login controller /users/login", () => {
+  beforeAll(async () => {
+    await mongoose
+      .connect(DB_HOST)
+      .then(() => {
+        console.log("Database connection successful");
+      })
+      .catch((error) => {
+        console.log(error.massage);
+      });
+  });
 
-const credentials = {
-  _id: "123",
-    email: "test@example.com",
-    password: bcrypt.hashSync("password", 10),
-    subscription: "premium",
- }
+  afterAll(async () => {
+    await mongoose.connection.close();
+  });
 
-describe("test login controller", () => {
-  beforeAll(() => app.listen(3000), 6000);
-  test("login return user", async () => {
-    const response = await (await request(app).post("/users/login")).send(credentials);
-    console.log(response.status);
-    // expect(response.status).toBe(200)
+  test("test login controller", async () => {
+    const credentials = {
+      email: "test@example.com",
+      password: "test!123",
+    };
+    const response = await request(app).post("/users/login").send(credentials);
+    expect(response.statusCode).toBe(200);
+    expect(response.body.token).toBeDefined();
+    expect(response.body.user).toBeDefined();
+    expect(response.body.user.email).toBe("test@example.com");
+    expect(response.body.user.subscription).toBe("starter");
+    expect(typeof response.body.user.email).toBe("string");
+    expect(typeof response.body.user.subscription).toBe("string");
   });
 });
