@@ -6,7 +6,7 @@ const { DB_HOST } = process.env;
 describe("Tests for login controller /users/login", () => {
   beforeAll(async () => {
     await mongoose
-      .connect(DB_HOST)
+      .connect(DB_HOST) 
       .then(() => {
         console.log("Database connection successful");
       })
