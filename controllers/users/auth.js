@@ -14,13 +14,13 @@ const register = async (req, res) => {
   }
   const createHashPassword = await bcrypt.hash(password, 10);
   const avatarURL = gravatar.url(email);
-  const verificationCode = v4();
+  const verificationToken = v4();
 
   const newUser = await User.create({
     ...req.body,
     password: createHashPassword,
     avatarURL,
-    verificationCode
+    verificationToken
   });
 
   const verifyEmail = {
