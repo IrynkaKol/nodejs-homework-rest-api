@@ -1,12 +1,16 @@
 const express = require("express");
 const {valiadation} = require('../../middlewares');
-const {registerSchema, loginSchema, updateSubscriptionSchema} = require("../../schemas");
+const {registerSchema, loginSchema, updateSubscriptionSchema, emailSchema} = require("../../schemas");
 const {ctrlWrapper, authenticate, isValidUserId, updateSubscriptionValidation, upload} = require('../../middlewares');
 const {users: ctrl} = require("../../controllers");
 
 const router = express.Router();
 
 router.post("/register", valiadation(registerSchema), ctrlWrapper(ctrl.register));
+
+router.get("/verify/:verificationToken", ctrlWrapper(ctrl.verifyEmail));
+
+router.post('/verify', valiadation(emailSchema), ctrlWrapper(ctrl.resendVerifyEmail))
 
 router.post("/login", valiadation(loginSchema), ctrlWrapper(ctrl.login));
 
