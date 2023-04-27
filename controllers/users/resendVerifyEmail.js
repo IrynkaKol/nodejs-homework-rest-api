@@ -15,7 +15,6 @@ const resendVerifyEmail = async (req, res) => {
     throw HttpError(400, "Verification has already been passed");
   }
 
-  
   const verifyEmail = {
     to: email,
     subject: "Verify email",
