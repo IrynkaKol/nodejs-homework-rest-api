@@ -5,8 +5,6 @@ const { User } = require("../../models/user");
 
 const { HttpError } = require("../../helpers");
 
-// const { Unauthorized } = require("http-errors");
-
 const { SECRET_KEY } = process.env;
 
 const login = async (req, res) => {
