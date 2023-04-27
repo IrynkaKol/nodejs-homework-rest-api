@@ -6,6 +6,7 @@ const { v4 } = require('uuid');
 const {sendEmail} = require('../../helpers');
 const {BASE_URL} = process.env;
 
+
 const register = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
@@ -29,7 +30,11 @@ const register = async (req, res) => {
     html: `<a target="_blank" href="${BASE_URL}/users/verify/:${verificationToken}">Click verify email</a>` 
    
   }
-  await sendEmail(verifyEmail)
+  try {
+    await sendEmail(verifyEmail)
+  } catch (error) {
+    console.log(error.message);
+  }
 
   res.status(201).json({
     user: {
