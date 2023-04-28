@@ -32,6 +32,7 @@ const register = async (req, res) => {
   }
   try {
     await sendEmail(verifyEmail)
+    
   } catch (error) {
     console.log(error.message);
   }
