@@ -7,7 +7,8 @@ const user = await User.findOne({verificationToken})
 if(!user) {
     throw HttpError(404, 'Not found')
 }
-await User.findByIdAndUpdate(user._id, {verify: true, verificationToken: null});
+await User.findByIdAndUpdate(user._id, {verify: true, verificationToken: ""});
+
 
 res.status(200).json({
     message: 'Verification successful'
