@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../app");
 const mongoose = require("mongoose");
-const { DB_HOST } = process.env;
+const { DB_HOST} = process.env;
 
 describe("Tests for login controller /users/login", () => {
   beforeAll(async () => {
@@ -21,14 +21,14 @@ describe("Tests for login controller /users/login", () => {
 
   test("test login controller", async () => {
     const credentials = {
-      email: "test@example.com",
-      password: "test!123",
+      email: "test@gmail.com",
+      password: "123456",
     };
     const response = await request(app).post("/users/login").send(credentials);
     expect(response.statusCode).toBe(200);
     expect(response.body.token).toBeDefined();
     expect(response.body.user).toBeDefined();
-    expect(response.body.user.email).toBe("test@example.com");
+    expect(response.body.user.email).toBe("test@gmail.com");
     expect(response.body.user.subscription).toBe("starter");
     expect(typeof response.body.user.email).toBe("string");
     expect(typeof response.body.user.subscription).toBe("string");
